@@ -4,23 +4,21 @@ import java.util.List;
 
 public class Student extends Account {
     List<course> courses;
-    //codeman
+    List<String> Teachers;
     public Student(String username, String password) {
         super(username, password);
+        Teachers = new ArrayList<>();
         courses = new ArrayList<>();
     }
     public void addCourse(course c) {
         courses.add(c);
         c.addStudent(getUsername());
+        Teachers.add(c.getTeacherName());
     }
     public List<course> getCourses() {
         return courses;
     }
     public List<String> getTeachers() {
-        List<String> Teachers = new ArrayList<>();
-        for (int i = 0; i < courses.size(); i++) {
-            Teachers.add(courses.get(i).getTeacherName());
-        }
         return Teachers;
     }
 
