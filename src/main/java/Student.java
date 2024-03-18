@@ -21,5 +21,4 @@ public class Student extends Account {
     public List<String> getTeachers() {
         return Teachers;
     }
-
 }

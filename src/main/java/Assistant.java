@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Assistant extends Account {
     static List<course> allCourses = new ArrayList<>();
+    List<Teacher> teachersInQueue;
    public Assistant(String username, String password) {
        super(username, password);
    }
@@ -27,5 +28,25 @@ public class Assistant extends Account {
            coursesName.add(allCourses.get(i).getCourseName());
        }
        return coursesName;
+   }
+   public void getProfile() {
+       System.out.println();
+   }
+   public void teacherRegister() {
+       Scanner in = new Scanner(System.in);
+       for (int i = 0; i < teachersInQueue.size(); i++) {
+           System.out.print(teachersInQueue.get(i).getUsername() + ", ");
+       }
+       System.out.print("\nEnter teachers name for register: ");
+       String teacherName = in.next();
+       Teacher teacherTarget = new Teacher("", "");
+       for (int i = 0; i < teachersInQueue.size(); i++) {
+           Teacher teacher = teachersInQueue.get(i);
+           if (teacher.getUsername().equals(teacherName)) {
+               teacher.signUp();
+               teacherTarget = teacher;
+           }
+       }
+       teachersInQueue.remove(teacherTarget);
    }
 }

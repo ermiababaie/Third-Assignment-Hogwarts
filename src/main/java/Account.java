@@ -4,6 +4,9 @@ public class Account implements AccountManagement {
     private String username;
     private String password;
     private UUID accountID;
+    public void SignUp(String pass) {
+        this.password = hash(pass);
+    }
     public static String hash(String pass) {
         long mod = 1000000007, mod2 = 1000000009, mabna = 457, mabna2 = 701;
         long ans = 0, ans2 = 0, pow = 1, pow2 = 1;

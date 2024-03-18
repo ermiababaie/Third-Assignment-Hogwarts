@@ -6,6 +6,10 @@ import java.util.Scanner;
 public class Teacher extends Account {
     List<course> courses;
     List<Double> teacherScores;
+    private String pass;
+    public void signUp() {
+        SignUp(pass);
+    }
     public Teacher(String username, String password) {
         super(username, password);
         courses = new ArrayList<>();
