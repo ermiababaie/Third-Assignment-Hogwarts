@@ -16,6 +16,12 @@ public class Student extends Account {
         courses.add(c);
         c.addStudent(getUsername());
         Teachers.add(c.getCourseTeacher());
+//        for (int i = 0; i < Hogwarts.students.size(); i++) {
+//            if (Hogwarts.students.get(i).getUsername().equals(getUsername())) {
+//                Hogwarts.students.get(i).courses.remove(c);
+//                Hogwarts.students.get(i).courses.add(c);
+//            }
+//        }
     }
     public List<course> getCourses() {
         return courses;

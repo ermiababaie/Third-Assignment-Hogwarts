@@ -14,6 +14,9 @@ public class course  {
     public Teacher getCourseTeacher() {
         return courseTeacher;
     }
+    public String getDetails() {
+        return details;
+    }
     public course(Teacher courseTeacher, String courseName, String details) {
         this.courseTeacher = courseTeacher;
         this.courseName = courseName;

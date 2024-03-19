@@ -14,14 +14,26 @@ public class Teacher extends Account {
         super(username, password);
         courses = new ArrayList<>();
     }
-    public void addCourse(course c) {
+    public void addCourse(course c, Teacher teacher) {
         courses.add(c);
         c.changeTeacher(c.getCourseTeacher());
+        for (int i = 0; i < c.getStudents().size(); i++) {
+            for (int j = 0; j < Hogwarts.students.size(); j++) {
+                if (Hogwarts.students.get(j).getUsername().equals(c.getStudents().get(i))) {
+                    Hogwarts.students.get(j).Teachers.add(c.courseTeacher);
+                }
+            }
+        }
+        for (int i = 0; i < Hogwarts.courses.size(); i++) {
+            if (Hogwarts.courses.get(i).getCourseID().equals(c.getCourseID())) {
+                Hogwarts.courses.get(i).changeTeacher(teacher);
+            }
+        }
     }
-    public void addCourse(String coursename, List<course> allCourses) {
+    public void addCourse(String coursename, List<course> allCourses, Teacher teacher) {
         for (int i = 0; i < allCourses.size(); i++) {
             if (allCourses.get(i).getCourseName().equals(coursename)) {
-                addCourse(allCourses.get(i));
+                addCourse(allCourses.get(i), teacher);
             }
         }
     }
