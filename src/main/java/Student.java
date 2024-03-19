@@ -1,14 +1,15 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class Student extends Account {
+    Random rand = new Random();
     List<course> courses;
     static HashMap<UUID, Double> TeacherScore = new HashMap<>();
     List<Teacher> Teachers;
+    String HogwartsSchool;
+    String[] sch = {"Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"};
     public Student(String username, String password) {
         super(username, password);
+        HogwartsSchool = sch[rand.nextInt(4)];
         Teachers = new ArrayList<>();
         courses = new ArrayList<>();
     }
