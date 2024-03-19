@@ -5,18 +5,21 @@ import java.util.UUID;
 
 public class course  {
     private UUID courseID;
+    Teacher courseTeacher;
     private String teacherName;
     private String courseName;
     private String details;
     List<String> students;
-    HashMap<String,Double> studentScore;
-    public course(String teacherName, String courseName, String details) {
-        this.teacherName = teacherName;
+    static HashMap<String,Double> studentScore = new HashMap<>();
+    public Teacher getCourseTeacher() {
+        return courseTeacher;
+    }
+    public course(Teacher courseTeacher, String courseName, String details) {
+        this.courseTeacher = courseTeacher;
         this.courseName = courseName;
         this.details = details;
         this.courseID = UUID.randomUUID();
         this.students = new ArrayList<>();
-        studentScore = new HashMap<String,Double>();
     }
 
     public void addStudent(String student) {
@@ -25,16 +28,16 @@ public class course  {
     public List<String> getStudents() {
         return students;
     }
-    public String getTeacherName() {
-        return teacherName;
-    }
-    public void changeTeacherName(String teacherName) {
-        this.teacherName = teacherName;
+    public void changeTeacher(Teacher courseTeacher) {
+        this.courseTeacher = courseTeacher;
     }
     public String getCourseName() {
         return courseName;
     }
     public void scoring(String studentName, Double score) {
         studentScore.put(studentName, score);
+    }
+    public UUID getCourseID() {
+        return courseID;
     }
 }

@@ -1,11 +1,16 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Hogwarts {
 
-    List<Student> students;
-    List<Teacher> teachers;
-    List<course> courses;
+    static List<Assistant> Assistants = new ArrayList<>();
+    static List<Student> students = new ArrayList<>();
+    static List<Teacher> teachers = new ArrayList<>();
+    static List<course> courses = new ArrayList<>();
 
+    public static void addAssistant(Assistant assistant) {
+        Assistants.add(assistant);
+    }
     public void addStudent(Student student) {
         students.add(student);
     }
@@ -17,8 +22,8 @@ public class Hogwarts {
     }
 
     public void courseReq(Teacher teacher, course courseName) {
-        if (courseName.getTeacherName().equals("")) {
-            courseName.changeTeacherName(teacher.getUsername());
+        if (courseName.getCourseTeacher().getUsername().equals("")) {
+            courseName.courseTeacher.changeUsername(teacher.getUsername());
         }
         else {
             System.out.println("access denied");

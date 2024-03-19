@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Assistant extends Account {
     static List<course> allCourses = new ArrayList<>();
-    List<Teacher> teachersInQueue;
+    static List<Teacher> teachersInQueue = new ArrayList<>();
    public Assistant(String username, String password) {
        super(username, password);
    }
@@ -19,7 +19,8 @@ public class Assistant extends Account {
         allCourses.add(c);
    }
    public void makeCourse(String courseName, String details) {
-       course c = new course("", courseName, details);
+       Teacher teacher = new Teacher("", "");
+       course c = new course(teacher, courseName, details);
        addCourse(c);
    }
    public static List<String> getCoursesName() {

@@ -1,12 +1,12 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Teacher extends Account {
     List<course> courses;
-    List<Double> teacherScores;
+    List<HashMap<UUID, Double>> scores = new ArrayList<>();
     private String pass;
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
     public void signUp() {
         SignUp(pass);
     }
@@ -16,7 +16,7 @@ public class Teacher extends Account {
     }
     public void addCourse(course c) {
         courses.add(c);
-        c.changeTeacherName(getUsername());
+        c.changeTeacher(c.getCourseTeacher());
     }
     public void addCourse(String coursename, List<course> allCourses) {
         for (int i = 0; i < allCourses.size(); i++) {
@@ -64,15 +64,27 @@ public class Teacher extends Account {
         }
         System.out.print("\n");
     }
-    public void addTeacherScore(Double TeacherScore) {
-        this.teacherScores.add(TeacherScore);
+    public void addTeacherScore(course course, Double TeacherScore) {
+        HashMap<UUID,Double> save = new HashMap<>();
+        save.put(course.getCourseID(), TeacherScore);
+        this.scores.add(save);
     }
-    public Double getTeacherScore() {
-        Double TeacherScore = 0.0;
-        Double cnt = (double)teacherScores.size();
-        for (int i = 0; i < teacherScores.size(); i++) {
-            TeacherScore += teacherScores.get(i);
+    public void getTeacherScore() {
+        for (int i = 0; i < courses.size(); i++) {
+            System.out.print(courses.get(i).getCourseName() + ' ' + courses.get(i).getCourseID() + ": ");
+            Double TeacherScore = 0.0, cnt = 0.0;
+            for (int j = 0; j < scores.size(); j++) {
+                if (scores.get(j).get(courses.get(i).getCourseID()) != null) {
+                    cnt = cnt + 1.0;
+                    TeacherScore += scores.get(j).get(courses.get(i).getCourseID());
+                }
+            }
+            if (cnt == 0.0) {
+                System.out.println("score not exist");
+            }
+            else {
+                System.out.println(TeacherScore / cnt);
+            }
         }
-        return TeacherScore / cnt;
     }
 }

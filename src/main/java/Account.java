@@ -7,7 +7,11 @@ public class Account implements AccountManagement {
     public void SignUp(String pass) {
         this.password = hash(pass);
     }
-    public static String hash(String pass) {
+    public UUID getAccountID() {
+        return accountID;
+    }
+    public static String hash(String pas) {
+        String pass = pas + "this is ermias hashsalt";
         long mod = 1000000007, mod2 = 1000000009, mabna = 457, mabna2 = 701;
         long ans = 0, ans2 = 0, pow = 1, pow2 = 1;
         for (int i = 0; i < pass.length(); i++) {
@@ -29,7 +33,7 @@ public class Account implements AccountManagement {
 
     @Override
     public boolean validatePassword(String enteredPassword) {
-        return hash(enteredPassword).equals(hash(this.password));
+        return hash(enteredPassword).equals(this.password);
     }
 
     @Override
